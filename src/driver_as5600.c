@@ -51,7 +51,7 @@
 /**
  * @brief chip address definition
  */
-#define AS5600_ADDRESS            0x6C        /**< iic device address */
+#define AS5600_ADDRESS            0x36 //0x6C        /**< iic device address */
 
 /**
  * @brief chip register definition
