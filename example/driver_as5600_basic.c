@@ -36,7 +36,7 @@
 
 #include "driver_as5600_basic.h"
 
-as5600_handle_t gs_handle;        /**< as5600 handle */
+extern as5600_handle_t gs_handle;        /**< as5600 handle */
 
 /**
  * @brief  basic example init
