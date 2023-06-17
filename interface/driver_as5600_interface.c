@@ -58,7 +58,7 @@
 #define ACK_VAL                            0x0                      /*!< I2C ack value */
 #define NACK_VAL                           0x1                      /*!< I2C nack value */
 
-static const char *TAG_ROTARY_SENSOR = "AS5600 Sensor";
+// static const char *TAG_ROTARY_SENSOR = "AS5600 Sensor";
 esp_err_t err;
 
 /**
@@ -115,30 +115,30 @@ uint8_t as5600_interface_iic_deinit(void)
  * --------|--------------------------|----------------|----------------------|--------------------|------|
  *
  */
-static esp_err_t i2c_master_read_slave_reg(i2c_port_t i2c_num, uint8_t i2c_addr, uint8_t i2c_reg, uint8_t* data_rd, size_t size)
-{
-    if (size == 0) {
-        return ESP_OK;
-    }
-    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-    i2c_master_start(cmd);
-    // first, send device address (indicating write) & register to be read
-    i2c_master_write_byte(cmd, ( i2c_addr << 1 ), ACK_CHECK_EN);
-    // send register we want
-    i2c_master_write_byte(cmd, i2c_reg, ACK_CHECK_EN);
-    // Send repeated start
-    i2c_master_start(cmd);
-    // now send device address (indicating read) & read data
-    i2c_master_write_byte(cmd, ( i2c_addr << 1 ) | READ_BIT, ACK_CHECK_EN);
-    if (size > 1) {
-        i2c_master_read(cmd, data_rd, size - 1, ACK_VAL);
-    }
-    i2c_master_read_byte(cmd, data_rd + size - 1, NACK_VAL);
-    i2c_master_stop(cmd);
-    esp_err_t ret = i2c_master_cmd_begin(i2c_num, cmd, 1000 / portTICK_PERIOD_MS);
-    i2c_cmd_link_delete(cmd);
-    return ret;
-}
+// static esp_err_t i2c_master_read_slave_reg(i2c_port_t i2c_num, uint8_t i2c_addr, uint8_t i2c_reg, uint8_t* data_rd, size_t size)
+// {
+//     if (size == 0) {
+//         return ESP_OK;
+//     }
+//     i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+//     i2c_master_start(cmd);
+//     // first, send device address (indicating write) & register to be read
+//     i2c_master_write_byte(cmd, ( i2c_addr << 1 ), ACK_CHECK_EN);
+//     // send register we want
+//     i2c_master_write_byte(cmd, i2c_reg, ACK_CHECK_EN);
+//     // Send repeated start
+//     i2c_master_start(cmd);
+//     // now send device address (indicating read) & read data
+//     i2c_master_write_byte(cmd, ( i2c_addr << 1 ) | READ_BIT, ACK_CHECK_EN);
+//     if (size > 1) {
+//         i2c_master_read(cmd, data_rd, size - 1, ACK_VAL);
+//     }
+//     i2c_master_read_byte(cmd, data_rd + size - 1, NACK_VAL);
+//     i2c_master_stop(cmd);
+//     esp_err_t ret = i2c_master_cmd_begin(i2c_num, cmd, 1000 / portTICK_PERIOD_MS);
+//     i2c_cmd_link_delete(cmd);
+//     return ret;
+// }
 
 /**
  * @brief      interface iic bus read
