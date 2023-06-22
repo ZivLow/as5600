@@ -36,7 +36,7 @@
 
 #include "driver_as5600_basic.h"
 
-extern as5600_handle_t gs_handle;        /**< as5600 handle */
+extern as5600_handle_t gs_handle;        /**< as5600 handle. Please declare as5600_handle_t gs_handle in your main file as well.*/
 
 /**
  * @brief  basic example init
@@ -63,7 +63,7 @@ uint8_t as5600_basic_init(void)
     if (res != 0)
     {
         as5600_interface_debug_print("as5600: init failed.\n");
-       
+        
         return 1;
     }
     
@@ -88,7 +88,7 @@ uint8_t as5600_basic_read(float *angle)
     if (res != 0)
     {
         as5600_interface_debug_print("as5600: read failed.\n");
-       
+        
         return 1;
     }
     
