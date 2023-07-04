@@ -34,7 +34,7 @@
  * </table>
  */
 
-//#include <cstdarg>                                                  // To use ... (ellipsis) in function arguments
+// #include <cstdarg>                                                  // To use ... (ellipsis) in function arguments
 
 #include <stdio.h>
 #include "driver_as5600_interface.h"
@@ -222,5 +222,8 @@ void as5600_interface_delay_ms(uint32_t ms)
  */
 void as5600_interface_debug_print(const char *const fmt, ...)
 {
-    
+    va_list args;
+    va_start(args, fmt);
+    vprintf(fmt, args);
+    va_end(args);
 }
